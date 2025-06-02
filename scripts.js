@@ -1,9 +1,17 @@
 const selButtons = document.querySelector(".selection");
-const resultDiv = document.querySelector(".result")
 
-selButtons.addEventListener('click', (event) => {
-  play(event.target.id);
-})
+const roundInfosDiv = document.querySelector(".round-info")
+const currentRoundDiv = document.querySelector(".current");
+
+const userChoiceDiv = document.querySelector(".user-choice");
+const computerChoiceDiv = document.querySelector(".computer-choice");
+
+const resultDiv = document.querySelector(".result");
+
+let computerScore = 0;
+let userScore = 0;
+let currentRound = 1;
+let gameWinner = null;
 
 function getComputerChoice() {
   let choice = Math.round(Math.random() * 2);
@@ -18,12 +26,8 @@ function getComputerChoice() {
   }
 }
 
-function getUserChoice() {
-  let choice = prompt("Your choice").toLowerCase();
-  return choice;
-}
-
 function getRoundWinner(computerChoice, userChoice) {
+
   if (computerChoice === userChoice) {
     return "tie"
   }
@@ -56,43 +60,43 @@ function getRoundWinner(computerChoice, userChoice) {
   }
 }
 
-function showRound(round, computerChoice, userChoice) {
+function updateRoundInfos(computerChoice, userChoice, result) {
+  currentRoundDiv.textContent = `Round ${currentRound}`;
+  userChoiceDiv.textContent = `You choose ${userChoice}`;
+  computerChoiceDiv.textContent = `Computer chooses ${computerChoice}`;
+
+  resultDiv.textContent = `${result}`;
 }
 
-function playRound(round, userChoice) {
+function playRound(userChoice) {
   let computerChoice = getComputerChoice();
-  let winner = getRoundWinner(computerChoice, userChoice);
-
-  console.log(`\nRound ${round}`);
-  console.log(`Computer choice : ${computerChoice}`);
-  console.log(`Your choice     : ${userChoice}`);
-
-  return winner;
-}
-
-function play(userChoice) {
-  let computerScore = 0;
-  let userScore = 0;
-  let currentRound = 1;
-  let gameWinner = null;
-  let roundWinner = playRound(currentRound, userChoice)
+  let roundWinner = getRoundWinner(computerChoice, userChoice);
+  let result;
 
   if (roundWinner === "tie") {
-    console.log("Tie !");
+    result = "It's a tie !";
   }
   if (roundWinner === "user") {
+    result = "You win !";
     userScore++;
   }
   if (roundWinner === "computer") {
+    result = "You loose..";
     computerScore++;
   }
-
-  currentRound++;
 
   console.log(`${roundWinner} wins this round !`);
   console.log(
     `Your score     : ${userScore}\n` +
     `Computer score : ${computerScore}`);
+
+  updateRoundInfos(computerChoice, userChoice, result);
+  currentRound++;
+
+  return roundWinner;
+}
+
+function play(userChoice) {
 
   console.log("Match is over");
 
@@ -108,3 +112,8 @@ function play(userChoice) {
     console.log("It's a tie !");
   }
 }
+
+selButtons.addEventListener('click', (event) => {
+  playRound(event.target.id);
+})
+
