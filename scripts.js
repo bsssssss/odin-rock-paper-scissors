@@ -1,5 +1,4 @@
-function getComputerChoice()
-{
+function getComputerChoice() {
   let choice = Math.round(Math.random() * 2);
 
   switch (choice) {
@@ -12,14 +11,12 @@ function getComputerChoice()
   }
 }
 
-function getUserChoice()
-{
+function getUserChoice() {
   let choice = prompt("Your choice").toLowerCase();
   return choice;
 }
 
-function getRoundWinner(computerChoice, userChoice)
-{
+function getRoundWinner(computerChoice, userChoice) {
   console.log(`Computer choice : ${computerChoice}`);
   console.log(`Your choice     : ${userChoice}`);
 
@@ -55,10 +52,9 @@ function getRoundWinner(computerChoice, userChoice)
   }
 }
 
-function playRound(round)
-{
+function playRound(round) {
   let computerChoice = getComputerChoice();
-  let userChoice     = getUserChoice();
+  let userChoice = getUserChoice();
   console.log(`\nRound ${round}`);
 
   let winner = getRoundWinner(computerChoice, userChoice);
@@ -66,12 +62,11 @@ function playRound(round)
   return winner;
 }
 
-function playGame()
-{
+function playGame() {
   let computerScore = 0;
-  let userScore     = 0;
-  let currentRound  = 1;
-  let gameWinner    = null;
+  let userScore = 0;
+  let currentRound = 1;
+  let gameWinner = null;
 
   while (currentRound <= 5) {
     let roundWinner = playRound(currentRound)
@@ -92,8 +87,8 @@ function playGame()
 
     console.log(`${roundWinner} wins this round !`);
     console.log(
-    `Your score     : ${userScore}\n` +
-    `Computer score : ${computerScore}`);
+      `Your score     : ${userScore}\n` +
+      `Computer score : ${computerScore}`);
   }
 
   console.log("Match is over");
