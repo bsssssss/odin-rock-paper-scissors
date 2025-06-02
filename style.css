@@ -5,3 +5,12 @@ body {
 div {
   color: white;
 }
+
+#player-score,
+#computer-score {
+  margin: 10px;
+}
+
+#score {
+  width: 500px;
+}
