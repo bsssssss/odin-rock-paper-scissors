@@ -8,24 +8,24 @@
     <script src="./scripts.js" defer></script>
   </head>
   <body>
-    <div id="score">
-      <span>Score</span>
-      <div>
-        <span>Player</span><span id="player-score"></span>
-        -
-        <span id="computer-score"></span><span>Computer</span>
-      </div>
-    </div>
     <div class="selection">
       <button id="rock">ROCK</button>
       <button id="paper">PAPER</button>
       <button id="scissors">SCISSORS</button>
     </div>
+    <div id="score">
+      <div>
+        <span>Player</span><span id="player-score"></span>
+        <span id="score-separator">-</span>
+        <span id="computer-score"></span><span>Computer</span>
+      </div>
+    </div>
     <div class="round-info">
       <div class="current"></div>
       <div class="choices">
-        <div class="user-choice"></div>
-        <div class="computer-choice"></div>
+        <span id="user-choice"></span>
+        <span id="choice-separator"></span>
+        <span id="computer-choice"></span>
       </div>
       <div class="result"></div>
     </div>
