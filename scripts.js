@@ -1,3 +1,10 @@
+const selButtons = document.querySelector(".selection");
+const resultDiv = document.querySelector(".result")
+
+selButtons.addEventListener('click', (event) => {
+  play(event.target.id);
+})
+
 function getComputerChoice() {
   let choice = Math.round(Math.random() * 2);
 
@@ -17,9 +24,6 @@ function getUserChoice() {
 }
 
 function getRoundWinner(computerChoice, userChoice) {
-  console.log(`Computer choice : ${computerChoice}`);
-  console.log(`Your choice     : ${userChoice}`);
-
   if (computerChoice === userChoice) {
     return "tie"
   }
@@ -52,44 +56,43 @@ function getRoundWinner(computerChoice, userChoice) {
   }
 }
 
-function playRound(round) {
-  let computerChoice = getComputerChoice();
-  let userChoice = getUserChoice();
-  console.log(`\nRound ${round}`);
+function showRound(round, computerChoice, userChoice) {
+}
 
+function playRound(round, userChoice) {
+  let computerChoice = getComputerChoice();
   let winner = getRoundWinner(computerChoice, userChoice);
+
+  console.log(`\nRound ${round}`);
+  console.log(`Computer choice : ${computerChoice}`);
+  console.log(`Your choice     : ${userChoice}`);
 
   return winner;
 }
 
-function playGame() {
+function play(userChoice) {
   let computerScore = 0;
   let userScore = 0;
   let currentRound = 1;
   let gameWinner = null;
+  let roundWinner = playRound(currentRound, userChoice)
 
-  while (currentRound <= 5) {
-    let roundWinner = playRound(currentRound)
-
-    if (roundWinner === "tie") {
-      console.log("Tie !");
-      currentRound++;
-      continue
-    }
-    if (roundWinner === "user") {
-      userScore++;
-    }
-    if (roundWinner === "computer") {
-      computerScore++;
-    }
-
-    currentRound++;
-
-    console.log(`${roundWinner} wins this round !`);
-    console.log(
-      `Your score     : ${userScore}\n` +
-      `Computer score : ${computerScore}`);
+  if (roundWinner === "tie") {
+    console.log("Tie !");
   }
+  if (roundWinner === "user") {
+    userScore++;
+  }
+  if (roundWinner === "computer") {
+    computerScore++;
+  }
+
+  currentRound++;
+
+  console.log(`${roundWinner} wins this round !`);
+  console.log(
+    `Your score     : ${userScore}\n` +
+    `Computer score : ${computerScore}`);
 
   console.log("Match is over");
 
