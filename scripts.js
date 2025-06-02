@@ -62,6 +62,7 @@ function playRound(round)
   console.log(`\nRound ${round}`);
 
   let winner = getRoundWinner(computerChoice, userChoice);
+
   return winner;
 }
 
