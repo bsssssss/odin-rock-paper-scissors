@@ -1,28 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rock Paper Scissors</title>
-  <link href="./style.css" rel="stylesheet">
-  <script src="./scripts.js" defer></script>
-</head>
-
-<body>
-  <div class="selection">
-    <button id="rock">ROCK</button>
-    <button id="paper">PAPER</button>
-    <button id="scissors">SCISSORS</button>
-  </div>
-  <div class="round-info">
-    <div class="current"></div>
-    <div class="choices">
-      <div class="user-choice"></div>
-      <div class="computer-choice"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rock Paper Scissors</title>
+    <link href="./style.css" rel="stylesheet" />
+    <script src="./scripts.js" defer></script>
+  </head>
+  <body>
+    <div id="score">
+      <span>Score</span>
+      <div>
+        <span>Player</span><span id="player-score"></span>
+        -
+        <span id="computer-score"></span><span>Computer</span>
+      </div>
     </div>
-    <div class="result"></div>
-  </div>
-</body>
-
+    <div class="selection">
+      <button id="rock">ROCK</button>
+      <button id="paper">PAPER</button>
+      <button id="scissors">SCISSORS</button>
+    </div>
+    <div class="round-info">
+      <div class="current"></div>
+      <div class="choices">
+        <div class="user-choice"></div>
+        <div class="computer-choice"></div>
+      </div>
+      <div class="result"></div>
+    </div>
+  </body>
 </html>
