@@ -3,17 +3,22 @@ const selButtons = document.querySelector(".selection");
 const roundInfosDiv = document.querySelector(".round-info");
 const currentRoundDiv = document.querySelector(".current");
 
-const userChoiceDiv = document.querySelector(".user-choice");
-const computerChoiceDiv = document.querySelector(".computer-choice");
+const userChoiceDiv = document.querySelector("#user-choice");
+const computerChoiceDiv = document.querySelector("#computer-choice");
+const choiceSeparator = document.querySelector("#choice-separator");
 
 const resultDiv = document.querySelector(".result");
 const userScoreSpan = document.querySelector("#player-score");
 const computerScoreSpan = document.querySelector("#computer-score");
 
+const gameOverDiv = document.createElement("div");
+gameOverDiv.classList.add("game-over");
+
 let computerScore = 0;
 let userScore = 0;
 let currentRound = 1;
 let gameWinner = null;
+let gameOver = false;
 
 reset();
 
@@ -22,6 +27,8 @@ function reset() {
   userScore = 0;
   currentRound = 1;
   gameWinner = null;
+  gameOverDiv.textContent = "";
+  gameOver = false;
   updateScore();
 }
 
@@ -72,9 +79,10 @@ function getRoundWinner(computerChoice, userChoice) {
 }
 
 function updateRoundInfos(computerChoice, userChoice, result) {
-  currentRoundDiv.textContent = `Round ${currentRound}`;
-  userChoiceDiv.textContent = `You choose ${userChoice}`;
-  computerChoiceDiv.textContent = `Computer chooses ${computerChoice}`;
+  // currentRoundDiv.textContent = `Round ${currentRound}`;
+  userChoiceDiv.textContent = `${userChoice}`;
+  computerChoiceDiv.textContent = `${computerChoice}`;
+  choiceSeparator.textContent = "VS";
 
   resultDiv.textContent = `${result}`;
 }
@@ -82,6 +90,11 @@ function updateRoundInfos(computerChoice, userChoice, result) {
 function updateScore() {
   userScoreSpan.textContent = `${userScore}`;
   computerScoreSpan.textContent = `${computerScore}`;
+}
+
+function showGameOver() {
+  gameOverDiv.textContent = "Game Over";
+  resultDiv.appendChild(gameOverDiv);
 }
 
 function playRound(userChoice) {
@@ -104,24 +117,16 @@ function playRound(userChoice) {
   updateRoundInfos(computerChoice, userChoice, result);
   updateScore();
 
-  currentRound++;
-  return roundWinner;
-}
-
-function play(userChoice) {
-  console.log("Match is over");
-
-  if (computerScore > userScore) {
-    gameWinner = "computer";
-    console.log("You lost..");
-  } else if (computerScore < userScore) {
-    gameWinner = "user";
-    console.log("You win :)");
-  } else {
-    console.log("It's a tie !");
+  if (userScore >= 5 || computerScore >= 5) {
+    gameOver = true;
+    showGameOver();
   }
+  currentRound++;
 }
 
 selButtons.addEventListener("click", (event) => {
+  if (gameOver) {
+    reset();
+  }
   playRound(event.target.id);
 });
