@@ -8,8 +8,8 @@ const computerChoiceDiv = document.querySelector("#computer-choice");
 const choiceSeparator = document.querySelector("#choice-separator");
 
 const resultDiv = document.querySelector(".result");
-const userScoreSpan = document.querySelector("#player-score");
-const computerScoreSpan = document.querySelector("#computer-score");
+const userScoreValueSpan = document.querySelector("#player-score-value");
+const computerScoreValueSpan = document.querySelector("#computer-score-value");
 
 const gameOverDiv = document.createElement("div");
 gameOverDiv.classList.add("game-over");
@@ -97,8 +97,8 @@ function updateRoundInfos(computerChoice, userChoice, result) {
 }
 
 function updateScore() {
-  userScoreSpan.textContent = `${userScore}`;
-  computerScoreSpan.textContent = `${computerScore}`;
+  userScoreValueSpan.textContent = `${userScore}`;
+  computerScoreValueSpan.textContent = `${computerScore}`;
 }
 
 function showGameOver(winner) {

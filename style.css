@@ -35,11 +35,25 @@ div {
   text-align: center;
 }
 
-#player-score,
-#computer-score {
+#player-score-value,
+#computer-score-value {
   margin: 10px;
+  flex: 1;
 }
 
-#score {
+.score {
+  display: flex;
+}
+
+.player-score,
+.computer-score {
   width: 500px;
+}
+
+.player-score {
+  text-align: right;
+}
+
+.computer-score {
+  text-align: left;
 }
