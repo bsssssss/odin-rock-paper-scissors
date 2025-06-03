@@ -8,26 +8,26 @@
     <script src="./scripts.js" defer></script>
   </head>
   <body>
-    <div class="selection">
-      <button id="rock">ROCK</button>
-      <button id="paper">PAPER</button>
-      <button id="scissors">SCISSORS</button>
-    </div>
-    <div id="score">
-      <div>
+    <div class="game-container">
+      <div class="selection">
+        <button id="rock">ROCK</button>
+        <button id="paper">PAPER</button>
+        <button id="scissors">SCISSORS</button>
+      </div>
+      <div class="score">
         <span>Player</span><span id="player-score"></span>
         <span id="score-separator">-</span>
         <span id="computer-score"></span><span>Computer</span>
       </div>
-    </div>
-    <div class="round-info">
-      <div class="current"></div>
-      <div class="choices">
-        <span id="user-choice"></span>
-        <span id="choice-separator"></span>
-        <span id="computer-choice"></span>
+      <div class="round-info">
+        <div class="current"></div>
+        <div class="choices">
+          <span id="user-choice"></span>
+          <span id="choice-separator"></span>
+          <span id="computer-choice"></span>
+        </div>
+        <div class="result"></div>
       </div>
-      <div class="result"></div>
     </div>
   </body>
 </html>

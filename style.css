@@ -1,9 +1,38 @@
 body {
   background-color: hsl(202deg 33% 15%);
+  font-family: 'Courier New', Courier, monospace;
 }
 
 div {
   color: white;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto;
+  width: 500px;
+  gap: 10px;
+}
+
+.selection {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+}
+
+.selection button {
+  width: 90px;
+  height: 50px;
+  background-color: hsl(202deg 33% 15%);
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.round-info {
+  text-align: center;
 }
 
 #player-score,

@@ -78,13 +78,22 @@ function getRoundWinner(computerChoice, userChoice) {
   }
 }
 
+function getMatchWinner() {
+  if (computerScore > userScore) {
+    return "Computer";
+  }
+  if (computerScore < userScore) {
+    return "Player";
+  }
+}
+
 function updateRoundInfos(computerChoice, userChoice, result) {
-  // currentRoundDiv.textContent = `Round ${currentRound}`;
+  currentRoundDiv.textContent = `Round ${currentRound}`;
   userChoiceDiv.textContent = `${userChoice}`;
   computerChoiceDiv.textContent = `${computerChoice}`;
-  choiceSeparator.textContent = "VS";
+  choiceSeparator.textContent = `${result}`;
 
-  resultDiv.textContent = `${result}`;
+  // resultDiv.textContent = `${result}`;
 }
 
 function updateScore() {
@@ -92,8 +101,8 @@ function updateScore() {
   computerScoreSpan.textContent = `${computerScore}`;
 }
 
-function showGameOver() {
-  gameOverDiv.textContent = "Game Over";
+function showGameOver(winner) {
+  gameOverDiv.textContent = `${winner} wins the match !`;
   resultDiv.appendChild(gameOverDiv);
 }
 
@@ -103,14 +112,14 @@ function playRound(userChoice) {
   let result;
 
   if (roundWinner === "none") {
-    result = "It's a tie !";
+    result = "=";
   }
   if (roundWinner === "user") {
-    result = "You win !";
+    result = ">";
     userScore++;
   }
   if (roundWinner === "computer") {
-    result = "You loose..";
+    result = "<";
     computerScore++;
   }
 
@@ -118,8 +127,9 @@ function playRound(userChoice) {
   updateScore();
 
   if (userScore >= 5 || computerScore >= 5) {
+    const winner = getMatchWinner();
     gameOver = true;
-    showGameOver();
+    showGameOver(winner);
   }
   currentRound++;
 }
